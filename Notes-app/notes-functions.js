@@ -1,3 +1,15 @@
+// Strict mode will prevent undeclared variables to leak to the global scope and will also prevent the use reserved keywords and variable name
+'use strict'
+
+// // Examples for strict mode'
+// const public = true
+// const processData = () => {
+//   data = '123213dfsdfsdf'
+// }
+
+// processData()
+// console.log(data)
+
 // Read existing notes from localStorage
 const getSavedNotes = () => {
   const notesJSON = localStorage.getItem('notes')
