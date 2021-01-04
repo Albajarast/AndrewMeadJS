@@ -2,7 +2,8 @@
 const getSavedNotes = () => {
   const notesJSON = localStorage.getItem('notes')
 
-  return notesJSON !== null ? JSON.parse(notesJSON) : []
+  // return notesJSON !== null ? JSON.parse(notesJSON) : []
+  return notesJSON ? JSON.parse(notesJSON) : []
 }
 
 // Save the notes to the localStorage
