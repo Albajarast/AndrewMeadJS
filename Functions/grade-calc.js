@@ -6,52 +6,57 @@
 // D -> 60-69
 
 let getScore = function (studentScore = 0, maxScore = 10) {
-    let score = studentScore / maxScore;
-    switch (true) {
-        case score >= 0.9:
-            // return result = 'A';
-            return { grade: 'A', percent: score * 100 };
-            break;
-        case score >= 0.8:
-            return { grade: 'B', percent: score * 100 };
-            break;
-        case score >= 0.7:
-            return { grade: 'C', percent: score * 100 };
-            break;
-        case score >= 0.6:
-            return { grade: 'D', percent: score * 100 };
-            break;
-        default:
-            return { grade: 'F', percent: score * 100 };
-            break;
-    }
+  let score = studentScore / maxScore
+  switch (true) {
+    case score >= 0.9:
+      // return result = 'A';
+      return { grade: 'A', percent: score * 100 }
+      break
+    case score >= 0.8:
+      return { grade: 'B', percent: score * 100 }
+      break
+    case score >= 0.7:
+      return { grade: 'C', percent: score * 100 }
+      break
+    case score >= 0.6:
+      return { grade: 'D', percent: score * 100 }
+      break
+    default:
+      return { grade: 'F', percent: score * 100 }
+      break
+  }
 }
 
-score1 = getScore(95, 100);
+score1 = getScore(95, 100)
 
-console.log(`You got a ${score1.grade} (${score1.percent}%)!`);
+console.log(`You got a ${score1.grade} (${score1.percent}%)!`)
 
 // Andrew option
 
 let gradeCalc = function (score, totalScore) {
-    let percent = (score / totalScore) * 100;
-    let letterGrade = '';
+  if (typeof score !== 'number' || typeof totalScore !== 'number') {
+    throw Error('Both arguments must be numbers')
+  }
+  let percent = (score / totalScore) * 100
+  let letterGrade = ''
 
-    if (percent >= 90) {
-        letterGrade = 'A';
-    } else if (percent >= 80) {
-        letterGrade = 'B';
-    } else if (percent >= 70) {
-        letterGrade = 'C';
-    } else if (percent >= 60) {
-        letterGrade = 'D';
-    } else {
-        letterGrade = 'F';
-    }
-
-    return `You got a ${letterGrade} (${percent}%)!`;
+  if (percent >= 90) {
+    letterGrade = 'A'
+  } else if (percent >= 80) {
+    letterGrade = 'B'
+  } else if (percent >= 70) {
+    letterGrade = 'C'
+  } else if (percent >= 60) {
+    letterGrade = 'D'
+  } else {
+    letterGrade = 'F'
+  }
+  return `You got a ${letterGrade} (${percent}%)!`
 }
 
-score2 = gradeCalc(50, 100);
-console.log(score2);
-
+try {
+  score2 = gradeCalc('b', 100)
+  console.log(score2)
+} catch (e) {
+  console.log('There has been an error!', e)
+}
