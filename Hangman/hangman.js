@@ -7,10 +7,9 @@ const Hangman = function (word, remainingGuesses) {
   this.word = word.toLowerCase()
   this.remainingGuesses = remainingGuesses
   // Added as for challenge 1 requirement 2
-  this.guessedLetters = ['c', 'a', 'n', 's', 'l']
+  this.guessedLetters = []
 }
 
-const game1 = new Hangman('Los Angeles', 10)
 // const game2 = new Hangman('piruleta', 20)
 
 // console.log(game1, game2)
@@ -32,4 +31,34 @@ Hangman.prototype.getPuzzle = function () {
   console.log(puzzleWord)
 }
 
+// Challenge 2 - Create a method for making a guess
+// Should accept a character for guessing
+// Should add unique guesses to the list of guesses
+// Should decrement the remainingGuesses if a unique guess isn't a match
+
+Hangman.prototype.makeGuess = function (char) {
+  char = char.toLowerCase()
+  const isUnique = !this.guessedLetters.includes(char)
+  const isBadGuess = !this.word.includes(char)
+
+  if (isUnique) {
+    this.guessedLetters.push(char)
+  }
+
+  if (isUnique && isBadGuess) {
+    this.remainingGuesses--
+  }
+  console.log(`Guessed letter: ${char}`)
+  console.log(`Remaining Guesses: ${this.remainingGuesses}`)
+}
+
+const game1 = new Hangman('Cat', 2)
+
 game1.getPuzzle()
+console.log(`Remaining Guesses: ${game1.remainingGuesses}`)
+
+window.addEventListener('keypress', (e) => {
+  const inputLetter = String.fromCharCode(e.charCode)
+  game1.makeGuess(inputLetter)
+  game1.getPuzzle()
+})
