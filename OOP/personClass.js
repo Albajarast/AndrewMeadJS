@@ -1,5 +1,5 @@
 // Javascript Classes and methods
-class PersonClass {
+class Person {
   constructor(firstName, lastName, age, likes = []) {
     this.firstName = firstName
     this.lastName = lastName
@@ -32,13 +32,46 @@ class PersonClass {
   }
 }
 
-const myPerson = new PersonClass('David', 'Lopez Albajara', 36, [
-  'swimming',
-  'videogames'
-])
+class Employee extends Person {
+  constructor(firstName, lastName, age, position, likes) {
+    super(firstName, lastName, age, likes)
+    this.position = position
+  }
 
-console.log(myPerson.getBio())
-myPerson.setName('Pedro Cabadas')
-console.log(myPerson)
-myPerson.setName('Pedro Martinez Osorio')
-console.log(myPerson)
+  getBio() {
+    return `${this.firstName} ${this.lastName} is a ${this.position}`
+  }
+
+  getYearsLeft() {
+    const retirementAge = 65
+    return retirementAge - this.age
+  }
+}
+
+// 1. Create a class for students
+// 2. Tack student grade: 0-100
+// 3. Override bio to print a passing or failing message. 70 and above is a pass, under 70 is a fail
+// 4. Create "updateGrade" that takes the amount to add or remove from the grade
+
+class Student extends Person {
+  constructor(firstName, lastName, age, grade, likes) {
+    super(firstName, lastName, age, likes)
+    this.grade = grade
+  }
+
+  getBio() {
+    let status = this.grade >= 70 ? 'passing' : 'failing'
+    return `${this.firstName} ${this.lastName} is ${status} the class with a grade of ${this.grade}`
+  }
+
+  updateGrade(credits) {
+    this.grade += credits
+  }
+}
+
+const student1 = new Student('David', 'López Albajara', 36, 89, ['Videogames'])
+
+console.log(student1)
+console.log(student1.getBio())
+student1.updateGrade(-20)
+console.log(student1.getBio())
