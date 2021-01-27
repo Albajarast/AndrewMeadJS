@@ -9,8 +9,8 @@ const puzzleWordDisplay = document.querySelector('#puzzle-word')
 const gameStatusDisplay = document.querySelector('#game-status')
 const game1 = new Hangman('cat', 2)
 
-puzzleWordDisplay.textContent = game1.getPuzzle()
-gameStatusDisplay.textContent = game1.getStatusMessage()
+puzzleWordDisplay.textContent = game1.puzzle
+gameStatusDisplay.textContent = game1.statusMessage
 
 // -------------------- //
 // Challenge 3 - Part 2 //
@@ -27,6 +27,6 @@ gameStatusDisplay.textContent = game1.getStatusMessage()
 window.addEventListener('keypress', (e) => {
   const inputLetter = e.key
   game1.makeGuess(inputLetter)
-  gameStatusDisplay.textContent = game1.getStatusMessage()
-  puzzleWordDisplay.textContent = game1.getPuzzle()
+  puzzleWordDisplay.textContent = game1.puzzle
+  gameStatusDisplay.textContent = game1.statusMessage
 })

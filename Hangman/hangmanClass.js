@@ -6,7 +6,7 @@ class Hangman {
     this.gameStatus = 'playing'
   }
 
-  getPuzzle() {
+  get puzzle() {
     let puzzleWord = ''
     for (let char of this.word) {
       this.guessedLetters.includes(char) || char === ' '
@@ -35,16 +35,16 @@ class Hangman {
   }
 
   getGameStatus() {
-    if (this.remainingGuesses > 0 && this.getPuzzle().includes('*')) {
+    if (this.remainingGuesses > 0 && this.puzzle.includes('*')) {
       this.gameStatus = 'playing'
-    } else if (!this.getPuzzle().includes('*')) {
+    } else if (!this.puzzle.includes('*')) {
       this.gameStatus = 'finished'
     } else {
       this.gameStatus = 'failed'
     }
   }
 
-  getStatusMessage() {
+  get statusMessage() {
     if (this.gameStatus === 'playing') {
       return `Guesses left: ${this.remainingGuesses}`
     } else if (this.gameStatus === 'finished') {
