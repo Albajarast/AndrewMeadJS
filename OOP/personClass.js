@@ -21,7 +21,7 @@ class Person {
     return `Hello, my name is ${this.firstName} ${this.lastName} and my age is ${this.age}`
   }
 
-  setName(fullName) {
+  set fullName(fullName) {
     const names = fullName.split(' ')
     this.firstName = names[0]
     if (names.length > 2) {
@@ -29,6 +29,10 @@ class Person {
     } else {
       this.lastName = names[1]
     }
+  }
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`
   }
 }
 
@@ -70,8 +74,8 @@ class Student extends Person {
 }
 
 const student1 = new Student('David', 'López Albajara', 36, 89, ['Videogames'])
-
-console.log(student1)
-console.log(student1.getBio())
-student1.updateGrade(-20)
-console.log(student1.getBio())
+// student1.fullName = 'Perico Palotes Martinez'
+console.log(student1.fullName)
+// console.log(student1.getBio())
+// student1.updateGrade(-20)
+// console.log(student1.getBio())
