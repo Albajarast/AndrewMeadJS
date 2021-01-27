@@ -27,7 +27,6 @@ gameStatusDisplay.textContent = game1.getStatusMessage()
 window.addEventListener('keypress', (e) => {
   const inputLetter = e.key
   game1.makeGuess(inputLetter)
-  game1.getPuzzle()
   gameStatusDisplay.textContent = game1.getStatusMessage()
   puzzleWordDisplay.textContent = game1.getPuzzle()
 })
