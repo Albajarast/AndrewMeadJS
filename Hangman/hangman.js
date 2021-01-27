@@ -20,7 +20,7 @@ const Hangman = function (word, remainingGuesses) {
 // Method to provide the puzzle
 
 Hangman.prototype.getPuzzle = function () {
-  puzzleWord = ''
+  let puzzleWord = ''
   for (let char of this.word) {
     this.guessedLetters.includes(char) || char === ' '
       ? (puzzleWord += char)
