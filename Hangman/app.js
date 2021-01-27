@@ -6,13 +6,11 @@
 // 3. Separate the Hangman definition from the rest of the app code (use app.js)
 
 const puzzleWordDisplay = document.querySelector('#puzzle-word')
-const guessesDisplay = document.querySelector('#remaining-guesses')
 const gameStatusDisplay = document.querySelector('#game-status')
 const game1 = new Hangman('cat', 2)
 
 puzzleWordDisplay.textContent = game1.getPuzzle()
-guessesDisplay.textContent = game1.remainingGuesses
-gameStatusDisplay.textContent = game1.gameStatus
+gameStatusDisplay.textContent = game1.getStatusMessage()
 
 // -------------------- //
 // Challenge 3 - Part 2 //
@@ -30,7 +28,6 @@ window.addEventListener('keypress', (e) => {
   const inputLetter = e.key
   game1.makeGuess(inputLetter)
   game1.getPuzzle()
-  gameStatusDisplay.textContent = game1.gameStatus
+  gameStatusDisplay.textContent = game1.getStatusMessage()
   puzzleWordDisplay.textContent = game1.getPuzzle()
-  guessesDisplay.textContent = game1.remainingGuesses
 })

@@ -37,19 +37,22 @@ Hangman.prototype.getPuzzle = function () {
 // Should decrement the remainingGuesses if a unique guess isn't a match
 
 Hangman.prototype.makeGuess = function (char) {
-  char = char.toLowerCase()
-  const isUnique = !this.guessedLetters.includes(char)
-  const isBadGuess = !this.word.includes(char)
+  // Added conditional as for challenge 4
+  if (this.gameStatus === 'playing') {
+    char = char.toLowerCase()
+    const isUnique = !this.guessedLetters.includes(char)
+    const isBadGuess = !this.word.includes(char)
 
-  if (isUnique) {
-    this.guessedLetters.push(char)
+    if (isUnique) {
+      this.guessedLetters.push(char)
+    }
+
+    if (isUnique && isBadGuess) {
+      this.remainingGuesses--
+    }
+
+    this.getGameStatus()
   }
-
-  if (isUnique && isBadGuess) {
-    this.remainingGuesses--
-  }
-
-  this.getGameStatus()
 }
 
 // -------------------- //
@@ -71,5 +74,25 @@ Hangman.prototype.getGameStatus = function () {
     this.gameStatus = 'finished'
   } else {
     this.gameStatus = 'failed'
+  }
+}
+
+// ----------- //
+// Challenge 4 //
+// ----------- //
+// 1. Disable new guesses unless "playing"
+// 2. Setup a method to get back a status message
+
+// Playing -> Guesses left: 3
+// Failed -> Nice try! The word was "cat"
+// Finished -> Great Work! You guessed the word
+
+Hangman.prototype.getStatusMessage = function () {
+  if (this.gameStatus === 'playing') {
+    return `Guesses left: ${this.remainingGuesses}`
+  } else if (this.gameStatus === 'finished') {
+    return `Great Work! You guessed the word`
+  } else {
+    return `Nice try! The word was '${this.word}'.`
   }
 }
