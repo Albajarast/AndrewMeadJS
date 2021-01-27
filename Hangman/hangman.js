@@ -93,6 +93,6 @@ Hangman.prototype.getStatusMessage = function () {
   } else if (this.gameStatus === 'finished') {
     return `Great Work! You guessed the word`
   } else {
-    return `Nice try! The word was '${this.word}'.`
+    return `Nice try! The word was '${this.word}'`
   }
 }
