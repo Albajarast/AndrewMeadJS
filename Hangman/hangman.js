@@ -6,15 +6,13 @@ const Hangman = function (word, remainingGuesses) {
   // Modified as for challenge 1 requirement 1
   this.word = word.toLowerCase()
   this.remainingGuesses = remainingGuesses
-  // Added as for challenge 1 requirement 2
+  // Added as for challenge 1 requirement 2H
   this.guessedLetters = []
+  this.gameStatus = 'playing'
 }
-
-// const game2 = new Hangman('piruleta', 20)
-
-// console.log(game1, game2)
-
-// Challenge 1
+// ----------- //
+// Challenge 1 //
+// ----------- //
 // 1. Set up the word instance property as an array of lower case letters
 // 2. Set up another instance property to store guessed letters
 // 3. Create a method that gives you the word puzzle
@@ -28,10 +26,12 @@ Hangman.prototype.getPuzzle = function () {
       ? (puzzleWord += char)
       : (puzzleWord += '*')
   }
-  console.log(puzzleWord)
+  return puzzleWord
 }
 
-// Challenge 2 - Create a method for making a guess
+// ------------------------------------------------ //
+// Challenge 2 - Create a method for making a guess //
+// ------------------------------------------------ //
 // Should accept a character for guessing
 // Should add unique guesses to the list of guesses
 // Should decrement the remainingGuesses if a unique guess isn't a match
@@ -48,17 +48,28 @@ Hangman.prototype.makeGuess = function (char) {
   if (isUnique && isBadGuess) {
     this.remainingGuesses--
   }
-  console.log(`Guessed letter: ${char}`)
-  console.log(`Remaining Guesses: ${this.remainingGuesses}`)
+
+  this.getGameStatus()
 }
 
-const game1 = new Hangman('Cat', 2)
+// -------------------- //
+// Challenge 3 - Part 2 //
+// -------------------- //
+// 1. Setup new "status" property with initial value of "playing"
+// 2. Create new method for recalculating status to "playing", "finished" or "failed"
+// 3. Call that method after the guess is processed
+// 4. Use console.log to print the status
 
-game1.getPuzzle()
-console.log(`Remaining Guesses: ${game1.remainingGuesses}`)
+// Start the game and see "playing"
+// Make two incorrect guesses to see "failed"
+// Refresh the browser and guess "c", "a" and "t" to see "finished"
 
-window.addEventListener('keypress', (e) => {
-  const inputLetter = String.fromCharCode(e.charCode)
-  game1.makeGuess(inputLetter)
-  game1.getPuzzle()
-})
+Hangman.prototype.getGameStatus = function () {
+  if (this.remainingGuesses > 0 && this.getPuzzle().includes('*')) {
+    this.gameStatus = 'playing'
+  } else if (!this.getPuzzle().includes('*')) {
+    this.gameStatus = 'finished'
+  } else {
+    this.gameStatus = 'failed'
+  }
+}
