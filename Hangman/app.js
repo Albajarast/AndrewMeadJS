@@ -7,6 +7,7 @@
 
 const puzzleWordDisplay = document.querySelector('#puzzle-word')
 const gameStatusDisplay = document.querySelector('#game-status')
+let wordToGuess
 const game1 = new Hangman('cat', 2)
 
 puzzleWordDisplay.textContent = game1.puzzle
@@ -30,3 +31,13 @@ window.addEventListener('keypress', (e) => {
   puzzleWordDisplay.textContent = game1.puzzle
   gameStatusDisplay.textContent = game1.statusMessage
 })
+
+getPuzzle('5', (error, puzzle) => {
+  if (error) {
+    console.log(`Error: ${error}`)
+  } else {
+    console.log(puzzle)
+  }
+})
+
+console.log('Do something else')
