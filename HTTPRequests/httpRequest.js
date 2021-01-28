@@ -24,25 +24,25 @@ const selectedCountry = document.querySelector('#country-selector')
 // 3. Make the HTTP request and call the callback with country information
 // 4. Use the callback to print the country name
 
-getCountries((error, countries) => {
-  if (error) {
-    console.log(`Error: ${error}`)
-  } else {
+getCountries()
+  .then((countries) => {
     countries.forEach((country) => {
       countrySelectorOptions.add(new Option(country.name, country.code))
     })
-  }
-})
+  })
+  .catch((err) => {
+    console.log(`Error: ${error}`)
+  })
 
 selectedCountry.addEventListener('change', () => {
   countryCode = selectedCountry.value
   countryCodeDisplay.textContent = countryCode
-  getCountryDetails(countryCode, (error, country) => {
-    if (error) {
-      console.log(`Error: ${error}`)
-    } else {
+  getCountryDetails(countryCode)
+    .then((country) => {
       countryNameDisplay.textContent = country.name
       countryFlagDisplay.src = country.flag
-    }
-  })
+    })
+    .catch((err) => {
+      console.log(`Error: ${err}`)
+    })
 })
