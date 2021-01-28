@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTTP Request Challenge</title>
+</head>
+
+<body>
+  <h1>Get Country Data</h1>
+
+  <!-- <h3>Steps:</h3>
+  <ul>
+    <li>1. Make a new request for all countries</li>
+    <li>2. Parse the responseText to get back the array of objects</li>
+    <li>3. Find the country object by it's country code (alpha2Code property)</li>
+    <li>4. Print the full country name (name property)</li>
+  </ul> -->
+
+  <h2>Solution</h2>
+  <label for="country">Please select a country</label>
+  <select name="country" id="country-selector">
+  </select>
+  <p><strong>Country Name: </strong><span id="country-name"></span></p>
+  <p><strong>Country Code: </strong><span id="country-code"></span></p>
+  <p><strong>Country Flag: </strong></p>
+  <img src="" alt="" id="country-flag" style=width:200px>
+
+</body>
+<script src="requestCall.js"></script>
+<script src="httpRequest.js"></script>
+
+</html>
