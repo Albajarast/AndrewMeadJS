@@ -32,11 +32,25 @@ window.addEventListener('keypress', (e) => {
   gameStatusDisplay.textContent = game1.statusMessage
 })
 
-getPuzzle('5')
+getPuzzle('3')
   .then((puzzle) => {
-    wordToGuess = puzzle
     console.log(puzzle)
   })
   .catch((err) => {
-    console.log(`Error: ${err}`)
+    console.log(err)
   })
+
+// fetch('http://puzzle.mead.io/puzzle', {})
+//   .then((response) => {
+//     if (response.status === 200) {
+//       return response.json()
+//     } else {
+//       throw new Error('Unable to fetch the puzzle')
+//     }
+//   })
+//   .then((data) => {
+//     console.log(data.puzzle)
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })

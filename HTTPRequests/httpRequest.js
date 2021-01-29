@@ -31,7 +31,7 @@ getCountries()
     })
   })
   .catch((err) => {
-    console.log(`Error: ${error}`)
+    console.log(err)
   })
 
 selectedCountry.addEventListener('change', () => {
@@ -43,6 +43,6 @@ selectedCountry.addEventListener('change', () => {
       countryFlagDisplay.src = country.flag
     })
     .catch((err) => {
-      console.log(`Error: ${err}`)
+      console.log(err)
     })
 })
