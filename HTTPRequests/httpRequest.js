@@ -75,3 +75,11 @@ getLocation()
   .catch((err) => {
     console.log(err)
   })
+
+getCurrentCountry()
+  .then((country) => {
+    console.log('Your current country is', country.name)
+  })
+  .catch((err) => {
+    console.log(err)
+  })
