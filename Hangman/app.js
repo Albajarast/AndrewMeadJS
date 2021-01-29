@@ -7,11 +7,10 @@
 
 const puzzleWordDisplay = document.querySelector('#puzzle-word')
 const gameStatusDisplay = document.querySelector('#game-status')
-let wordToGuess
-const game1 = new Hangman('cat', 2)
+let game1
 
-puzzleWordDisplay.textContent = game1.puzzle
-gameStatusDisplay.textContent = game1.statusMessage
+// puzzleWordDisplay.textContent = game1.puzzle
+// gameStatusDisplay.textContent = game1.statusMessage
 
 // -------------------- //
 // Challenge 3 - Part 2 //
@@ -32,13 +31,27 @@ window.addEventListener('keypress', (e) => {
   gameStatusDisplay.textContent = game1.statusMessage
 })
 
-getPuzzle('3')
-  .then((puzzle) => {
-    console.log(puzzle)
-  })
-  .catch((err) => {
-    console.log(err)
-  })
+// getPuzzle('3')
+//   .then((puzzle) => {
+//     console.log(puzzle)
+//   })
+//   .catch((err) => {
+//     console.log(err)
+//   })
+
+const render = () => {
+  puzzleWordDisplay.textContent = game1.puzzle
+  gameStatusDisplay.textContent = game1.statusMessage
+}
+const newGame = async () => {
+  const puzzle = await getPuzzle('2')
+  const attempts = puzzle.length++
+  game1 = new Hangman(puzzle, attempts)
+  render()
+}
+newGame()
+
+document.querySelector('#resetBtn').addEventListener('click', newGame)
 
 // fetch('http://puzzle.mead.io/puzzle', {})
 //   .then((response) => {

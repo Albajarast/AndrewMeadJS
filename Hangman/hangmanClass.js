@@ -1,6 +1,6 @@
 class Hangman {
   constructor(word, remainingGuesses) {
-    this.word = word
+    this.word = word.toLowerCase()
     this.remainingGuesses = remainingGuesses
     this.guessedLetters = []
     this.gameStatus = 'playing'
