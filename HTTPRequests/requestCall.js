@@ -52,7 +52,7 @@
 // Using Fetch API
 
 const getCountryDetails = (countryCode) => {
-  return fetch(`http://restcountries.eu/rest/v2/alpha/${countryCode}`).then(
+  return fetch(`https://restcountries.eu/rest/v2/alpha/${countryCode}`).then(
     (response) => {
       if (response.status === 200) {
         return response.json()
@@ -65,7 +65,7 @@ const getCountryDetails = (countryCode) => {
 
 const getCountries = () => {
   return (
-    fetch('http://restcountries.eu/rest/v2/all')
+    fetch('https://restcountries.eu/rest/v2/all')
       .then((response) => {
         if (response.status === 200) {
           return response.json()
@@ -83,5 +83,17 @@ const getCountries = () => {
         })
         return countries
       })
+  )
+}
+
+const getLocation = () => {
+  return fetch('https://ipinfo.io/json?token=5dc939de6548b1').then(
+    (response) => {
+      if (response.status === 200) {
+        return response.json()
+      } else {
+        throw new Error('Unable to fetch location')
+      }
+    }
   )
 }

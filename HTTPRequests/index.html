@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="Description" content="Country details practice">
   <title>HTTP Request Challenge</title>
 </head>
 
@@ -19,13 +20,25 @@
   </ul> -->
 
   <h2>Solution</h2>
-  <label for="country">Please select a country</label>
+  <label for="country-selector">Please select a country</label>
   <select name="country" id="country-selector">
   </select>
   <p><strong>Country Name: </strong><span id="country-name"></span></p>
   <p><strong>Country Code: </strong><span id="country-code"></span></p>
   <p><strong>Country Flag: </strong></p>
-  <img src="" alt="" id="country-flag" style=width:200px>
+  <img src="" alt="" id="country-flag" style="width:300px; height: 100%;">
+
+  <h2>Current Location</h2>
+  <p id="location"></p>
+
+  <h3>This is the country information based on your current location:</h3>
+  <p><strong>Country Name: </strong><span id="location-countryName"></span></p>
+  <p><strong>Country Code: </strong><span id="location-countryCode"></span></p>
+  <p><strong>Country Region: </strong><span id="location-countryRegion"></span></p>
+  <p><strong>Country Currency: </strong><span id="location-countryCurrency"></span></p>
+  <p><strong>Country Flag: </strong></p>
+  <img src="" alt="" id="location-countryFlag" style="width:300px; height: 100%;">
+
 
 </body>
 <script src="requestCall.js"></script>
