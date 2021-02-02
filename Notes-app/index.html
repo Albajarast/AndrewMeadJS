@@ -9,26 +9,38 @@
 </head>
 
 <body>
-  <h1>Notes App</h1>
-  <h2>Take notes and never forget</h2>
-  <label for="search-text">Search: </label>
-  <input id="search-text" type="text" id="note-text" placeholder="Filter ToDo's">
-  <label for="filterBy">Filter by: </label>
-  <select name="" id="filterBy">
-    <option value="byEdited">Last Edited</option>
-    <option value="byCreated">Recently created</option>
-    <option value="alphabetical">Alphabetically</option>
-  </select>
-  <div id="notes">
+  <header class="header">
+    <div class="container">
+      <h1 class="header__title">Notes App</h1>
+      <h2 class="header__subtitleclass=">Take notes and never forget</h2>
+    </div>
+  </header>
 
+  <div class=" actions">
+    <div class="actions__container">
+      <label for="search-text">Search: </label>
+      <input class="input" id="search-text" type="text" placeholder="Sort ToDo's">
+      <label for="filterBy">Sort by: </label>
+      <select class="dropdown" name="" id="filterBy">
+        <option value="byEdited">Last Edited</option>
+        <option value="byCreated">Recently created</option>
+        <option value="alphabetical">Alphabetically</option>
+      </select>
+    </div>
   </div>
-  <button id="add-note">Add a new note</button>
+
+  <div class=" container">
+    <div id="notes">
+
+    </div>
+    <button class="button" id="add-note">Add a new note</button>
+  </div>
+
 
   <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
   <script src="./js/notes-functions.js"></script>
   <script src="./js/notes-app.js"></script>
-  <p>Cambio para borrar y probar GIT Hub</p>
 </body>
 
 </html>

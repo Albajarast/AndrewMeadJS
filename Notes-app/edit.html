@@ -9,16 +9,34 @@
 </head>
 
 <body>
-  <input type="text" name="" id="note-title" placeholder="Note Title">
-  <span id="last-updated"></span>
-  <textarea name="" id="note-body" cols="30" rows="20"></textarea>
+  <header class="header">
+    <div class="container">
+      <h1 class="header__title">Notes App</h1>
+      <h2 class="header__subtitleclass=">Take notes and never forget</h2>
+    </div>
+  </header>
 
-  <button id="remove-note">Remove Note</button>
+  <div class=" actions">
+    <div class="actions__container actions__container--spaced">
+      <a href="index.html">Home</a>
+      <span id="last-updated"></span>
+    </div>
+  </div>
 
-  <a href="index.html">Go back</a>
+  <div class="container">
+    <input type=" text" name="" id="note-title" placeholder="Note Title" class="title-input">
+
+    <textarea name="" id="note-body" cols="30" rows="20" class="body-input"></textarea>
+
+    <button id="remove-note" class="button button--secondary">Remove Note</button>
+  </div>
+
+
+
+
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment-with-locales.min.js"></script>
-  <script src="./js/notes-app.js"></script>
+  <script src="./js/notes-functions.js"></script>
   <script src="./js/notes-edit.js"></script>
 </body>
 
