@@ -46,7 +46,7 @@ class Hangman {
 
   get statusMessage() {
     if (this.gameStatus === 'playing') {
-      return `Guesses left: ${this.remainingGuesses}`
+      return `You have guesses left: ${this.remainingGuesses}`
     } else if (this.gameStatus === 'finished') {
       return `Great Work! You guessed the word`
     } else {
