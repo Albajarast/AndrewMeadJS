@@ -2,7 +2,7 @@
 
 const titleElement = document.querySelector('#note-title')
 const bodyElement = document.querySelector('#note-body')
-const butttonElement = document.querySelector('#remove-note')
+const buttonElement = document.querySelector('#remove-note')
 const id = location.hash.substring(1)
 const lastUpdated = document.querySelector('#last-updated')
 
@@ -35,7 +35,7 @@ bodyElement.addEventListener('input', (e) => {
   saveNotes(notes)
 })
 
-butttonElement.addEventListener('click', (e) => {
+buttonElement.addEventListener('click', (e) => {
   removeNote(note.id)
   saveNotes(notes)
   location.assign('index.html')
