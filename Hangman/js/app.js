@@ -27,8 +27,7 @@ let game1
 window.addEventListener('keypress', (e) => {
   const inputLetter = e.key
   game1.makeGuess(inputLetter)
-  puzzleWordDisplay.textContent = game1.puzzle
-  gameStatusDisplay.textContent = game1.statusMessage
+  render()
 })
 
 // getPuzzle('3')
@@ -40,15 +39,26 @@ window.addEventListener('keypress', (e) => {
 //   })
 
 const render = () => {
-  puzzleWordDisplay.textContent = game1.puzzle
+  puzzleWordDisplay.innerHTML = ''
   gameStatusDisplay.textContent = game1.statusMessage
+
+  // Append each letter as an span for formatting on display
+  game1.puzzle.split('').forEach((letter) => {
+    let letterEl = document.createElement('span')
+    letter !== ' '
+      ? (letterEl.className = 'letter')
+      : (letterEl.className = 'space')
+    letterEl.textContent = letter
+    puzzleWordDisplay.appendChild(letterEl)
+  })
 }
 const newGame = async () => {
   const puzzle = await getPuzzle('2')
-  const attempts = puzzle.length++
+  const attempts = puzzle.length - 2
   game1 = new Hangman(puzzle, attempts)
   render()
 }
+
 newGame()
 
 document.querySelector('#resetBtn').addEventListener('click', newGame)
