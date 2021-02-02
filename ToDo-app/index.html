@@ -5,20 +5,37 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>ToDo App</title>
+
+  <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-  <h1>ToDo List</h1>
-  <input id="filter-text" type="text" placeholder="Filter ToDo's">
-  <label for="">
-    <input type="checkbox" name="" id="hide-completed"> Hide Completed
-  </label>
-  <div id="summary"></div>
-  <div id="todos"></div>
-  <form id="new-todo-form" action="">
-    <input type="text" placeholder="Write new ToDo" name="todoText">
-    <button type="submit">Add ToDo</button>
-  </form>
+  <header class="header">
+    <div class="container">
+      <h1 class="header__title">ToDo List</h1>
+      <h2 class="header__subtitle">What do you want to do?</h2>
+    </div>
+  </header>
+
+  <section class="actions">
+    <div class="actions__container actions__container--spaced">
+      <input id="filter-text" type="text" placeholder="Filter ToDo's" class="input">
+      <label for="">
+        <input type="checkbox" name="" id="hide-completed"> Hide Completed
+      </label>
+    </div>
+  </section>
+
+  <section class="container">
+    <div id="summary"></div>
+    <div id="todos"></div>
+    <form id="new-todo-form" action="">
+      <input type="text" placeholder="Write new ToDo" name="todoText" class="input">
+      <button type="submit" class="button">Add ToDo</button>
+    </form>
+  </section>
+
+
 
   <script src="https://unpkg.com/uuid@latest/dist/umd/uuidv4.min.js"></script>
   <script src="./js/todos-functions.js"></script>
