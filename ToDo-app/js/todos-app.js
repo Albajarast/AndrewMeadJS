@@ -15,14 +15,18 @@ document.querySelector('#filter-text').addEventListener('input', (event) => {
 
 document.querySelector('#new-todo-form').addEventListener('submit', (event) => {
   event.preventDefault()
-  todos.push({
-    id: uuidv4(),
-    text: event.target.todoText.value,
-    completed: false
-  })
-  event.target.todoText.value = ''
-  saveToDos(todos)
-  renderToDos(todos, filters)
+  const todoText = event.target.todoText.value.trim()
+
+  if (todoText.length > 0) {
+    todos.push({
+      id: uuidv4(),
+      text: todoText,
+      completed: false
+    })
+    event.target.todoText.value = ''
+    saveToDos(todos)
+    renderToDos(todos, filters)
+  }
 })
 
 document

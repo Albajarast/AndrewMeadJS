@@ -16,28 +16,37 @@ const saveToDos = (todos) => {
 
 // Render application todos based on filters
 const renderToDos = (todoList, filters) => {
-  let filteredToDos = todoList.filter((toDo) =>
-    toDo.text.toLowerCase().includes(filters.text.toLowerCase())
-  )
+  const filteredToDos = todoList.filter((toDo) => {
+    const searchTextMatch = toDo.text
+      .toLowerCase()
+      .includes(filters.text.toLowerCase())
+    const hideCompletedMatch = !filters.hideCompleted || !toDo.completed
 
-  filteredToDos = filteredToDos.filter(
-    (toDo) => !filters.hideCompleted || !toDo.completed
-  )
+    return searchTextMatch && hideCompletedMatch
+  })
+
+  const todoEl = document.querySelector('#todos')
 
   // Returns an array with the ToDo's with the completed property equal to false
   const incompleteToDos = filteredToDos.filter((todo) => !todo.completed)
 
   // Remove all the content of the div with id="summary"
-  document.querySelector('#summary').innerHTML = ''
+  const summary = document.querySelector('#summary')
+  summary.innerHTML = ''
 
-  generateSummaryDOM(incompleteToDos)
+  if (filteredToDos.length > 0) {
+    generateSummaryDOM(incompleteToDos)
+  } else {
+    summary.textContent = 'No to-dos to show'
+    summary.classList.add('empty-message')
+  }
 
   // Remove all the content from the div with id="todos"
-  document.querySelector('#todos').innerHTML = ''
+  todoEl.innerHTML = ''
 
   // Add all the filtered ToDo's as <p> in the div with id="todos"
   filteredToDos.forEach((toDo) => {
-    document.querySelector('#todos').appendChild(generateToDoDOM(toDo))
+    todoEl.appendChild(generateToDoDOM(toDo))
   })
 }
 
@@ -62,14 +71,15 @@ const toggleTodo = (id) => {
 
 // Get the DOM elements for an individual todo
 const generateToDoDOM = (toDo) => {
-  const todoDiv = document.createElement('div')
+  const todoEl = document.createElement('label')
+  const containerEl = document.createElement('div')
   const removeButton = document.createElement('button')
   const todoText = document.createElement('span')
   const checkbox = document.createElement('input')
 
   checkbox.setAttribute('type', 'checkbox')
   checkbox.checked = toDo.completed
-  todoDiv.appendChild(checkbox)
+  containerEl.appendChild(checkbox)
   checkbox.addEventListener('change', function () {
     toggleTodo(toDo.id)
     saveToDos(todos)
@@ -77,23 +87,30 @@ const generateToDoDOM = (toDo) => {
   })
 
   todoText.textContent = toDo.text
-  todoDiv.appendChild(todoText)
+  containerEl.appendChild(todoText)
+  todoEl.appendChild(containerEl)
 
   removeButton.textContent = 'Delete'
-  todoDiv.appendChild(removeButton)
+  removeButton.classList.add('button', 'button--text')
+  todoEl.appendChild(removeButton)
   removeButton.addEventListener('click', function () {
     removeToDo(toDo.id)
     saveToDos(todos)
     renderToDos(todos, filters)
   })
 
-  return todoDiv
+  todoEl.classList.add('list-item')
+  containerEl.classList.add('list-item__container')
+
+  return todoEl
 }
 
 // Get the DOM elements for list summary
 const generateSummaryDOM = (incompleteToDos) => {
   // Show number of the filtered ToDo's that are uncompleted(incompleteToDos.length)
   const summary = document.createElement('h2')
-  summary.textContent = `You have ${incompleteToDos.length} ToDos left`
+  summary.classList.add('list-title')
+  const plural = incompleteToDos.length === 1 ? '' : 's'
+  summary.textContent = `You have ${incompleteToDos.length} ToDo${plural} left`
   document.querySelector('#summary').appendChild(summary)
 }
